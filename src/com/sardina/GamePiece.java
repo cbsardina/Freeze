@@ -37,16 +37,21 @@ public class GamePiece {
     }
 
     public GamePiece(int positionX, int positionY, boolean frozen, String color, String name) {
-        this.positionX = 0;
-        this.positionY = 0;
+        this.positionX = positionX;
+        this.positionY = positionY;
         this.frozen = false;
         this.color = color;
         this.name = name;
     }
 
     public void move(int posX, int posY) {
-        positionX = posX;
-        positionY = posY;
+        if (frozen == false) {
+            positionX = posX;
+            positionY = posY;
+        } else {
+            positionX = positionX;
+            positionY = positionY; }
+
     }
 
     public void freeze() {
