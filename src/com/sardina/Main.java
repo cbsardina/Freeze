@@ -1,34 +1,64 @@
 package com.sardina;
 
+import java.util.Scanner;
+
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
-        GamePiece myGamePiece = new GamePiece(5,9,false,"blue", "Chris");
 
-            System.out.println("---------- VERIFY NOT FROZEN, THEN FREEZE ----------");
-            System.out.println("positionX #1: " + myGamePiece.getPositionX());
-            System.out.println("positionY #1: " + myGamePiece.getPositionY());
-            System.out.println("isFrozen() #1: " + myGamePiece.isFrozen());
-        myGamePiece.move(10, 20);
-            System.out.println("verify .move X to 10: " + myGamePiece.getPositionX());
-            System.out.println("verify .move Y to 20: " + myGamePiece.getPositionY());
+        Scanner scanner = new Scanner(System.in);
+
+    // ENTER FIRST GAME PIECE POSITIONS
+            System.out.println("Enter a number 0-100 for your X position: ");
+        int positionX = scanner.nextInt();
+            System.out.println("Enter a number 0-100 for your Y position: ");
+        int positionY = scanner.nextInt();
+
+    // SET UP PLAYER GAME PIECES
+        GamePiece myGamePiece = new GamePiece(positionX, positionY,false,"blue", "Chris");
+
+    // PRINT #1 POSITIONS AND WHETHER PIECE IS FROZEN
+            System.out.println("Your positionX is #1: " + myGamePiece.getPositionX());
+            System.out.println("Your positionY is #1: " + myGamePiece.getPositionY());
+            System.out.println("Is your game piece frozen? " + myGamePiece.isFrozen());
+            System.out.println(" ");
+
+    // PLAYER ENTERS NEW POSITIONS FOR THE GAME PIECE
+            System.out.println("Now move your game piece (number 0-100) in the X position: ");
+        positionX = scanner.nextInt();
+            System.out.println("Now move your other game piece (number 0-100) in the Y position: ");
+        positionY = scanner.nextInt();
+        myGamePiece.move(positionX, positionY);
+            System.out.println("Your new positionX is #2: " + myGamePiece.getPositionX());
+            System.out.println("Your new positionY is #2: " + myGamePiece.getPositionY());
+            System.out.println("Good move, you avoided getting your game pieces frozen!");
+            System.out.println(" ");
+
+    // AFTER 2ND MOVE, GAME PIECES ARE FROZEN
         myGamePiece.freeze();
 
-            System.out.println("----------------- VERIFY IS FROZEN ------------------");
-            System.out.println("After .freeze(), isFrozen() #2: " + myGamePiece.isFrozen());
-            System.out.println("Running myGamePiece.move(posX:50, posY:100)");
-        myGamePiece.move(50, 100);
-            System.out.println("Position X after ∆ to 50 #2: " + myGamePiece.getPositionX());
-            System.out.println("Position Y after ∆ to 100 #2: " + myGamePiece.getPositionY());
+    // PLAYER IS PROMPTED TO MOVE PIECES A 3RD TIME
+            System.out.println("Go ahead and move your X position again (number 0-100). ");
+        positionX = scanner.nextInt();
+            System.out.println("And once more for your Y position (number 0-100). ");
+        positionY = scanner.nextInt();
+        myGamePiece.move(positionX, positionY);
+            System.out.println("Your positionX #3: " + myGamePiece.getPositionX());
+            System.out.println("Your positionY #3: " + myGamePiece.getPositionY());
+            System.out.println("Womp Womp! Your game piece has been frozen! Just a second and I'll unfreeze it for you...");
+            System.out.println(" ");
 
-            System.out.println("-------------VERIFY CAN UNFREEZE AND REPOSITION ----------------");
+    // UNFREEZE GAME PIECES
         myGamePiece.unfreeze();
-            System.out.println("After .unfreeze(), isFrozen() #3: " + myGamePiece.isFrozen());
-            System.out.println("Running myGamePiece.move(posX:1000, posY:5000)");
-        myGamePiece.move(1000, 5000);
-            System.out.println("Position X after ∆ to 1000 #3: " + myGamePiece.getPositionX());
-            System.out.println("Position Y after ∆ to 5000 #3: " + myGamePiece.getPositionY());
+
+    // ENTER POSITIONS ONE LAST TIME TO SHOW THAT THE PIECES ARE UNFROZEN
+            System.out.println("Go ahead and enter a new X position from 0-100 now.");
+        positionX = scanner.nextInt();
+            System.out.println("And enter a new Y position from 0-100 also. ");
+        positionY = scanner.nextInt();
+            myGamePiece.move(positionX, positionY);
+        System.out.println("Your new positionX is #4: " + myGamePiece.getPositionX());
+        System.out.println("Your new positionY is #4: " + myGamePiece.getPositionY());
 
     }
 }
